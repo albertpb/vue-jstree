@@ -193,9 +193,14 @@
             },
             handleSingleSelectItems(oriNode, oriItem) {
                 this.handleRecursionNodeChilds(this, node => {
-                    if (node.model) node.model.selected = false
+                    if (node.model) {
+                        if(node.model.id !== oriNode.model.id) {
+                            node.model.selected = false
+                        } else {
+                            node.model.selected = oriNode.model.selected
+                        }
+                    }
                 })
-                oriNode.model.selected = true
             },
             handleBatchSelectItems(oriNode, oriItem) {
                 this.handleRecursionNodeChilds(oriNode, node => {
